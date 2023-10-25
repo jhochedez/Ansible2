@@ -1,5 +1,5 @@
 - hosts: all
   tasks:
     - copy: 
-      src: sample.war
-      dest: /var/lib/tomcat9/webapps
+        src: sample.war
+        dest: /var/lib/tomcat9/webapps
