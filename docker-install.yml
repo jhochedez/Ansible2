@@ -1,0 +1,41 @@
+- hosts: all
+  tasks:
+    - name: On récupère la liste des paquets installés
+      package_facts:
+    
+    - name: On s'assure d'installer docker sur centos
+      when: ansible_os_family == 'RedHat' and 'docker-ce' not in ansible_packages
+      block:
+        - yum:
+            name: yum-utils
+        - shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+        - yum:
+            name:
+              - docker-ce
+              - docker-ce-cli
+              - containerd.io
+              - docker-buildx-plugin 
+              - docker-compose-plugin
+    
+    - name: On s'assure d'installer docker sur debian    
+      when: ansible_os_family == 'Debian' and 'docker-ce' not in ansible_packages
+      block:
+        - apt:
+            name: curl
+        - shell: "curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg"
+        - shell: 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null'
+        - apt:
+            name:
+              - docker-ce
+              - docker-ce-cli
+              - containerd.io
+            update_cache: true
+        - user:
+            name: vagrant
+            groups:
+              - docker
+            append: true
+    - name: "On s'assure que docker soit démarré"
+      service:
+        name: docker
+        state: started
