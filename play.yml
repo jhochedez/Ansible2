@@ -24,12 +24,7 @@
       systemd:
         daemon_reload: true
 
-    - name: make sure the service is stopped
+    - name: make sure the service is restarted
       service:
         name: my-app
-        state: stopped
-
-    - name: make sure the service is started
-      service:
-        name: my-app
-        state: started
+        state: restarted
