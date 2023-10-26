@@ -6,7 +6,7 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/")
+@app.route("/tp")
 def hello_2():
     return "<p>Hello, Ansible!</p>"
 
