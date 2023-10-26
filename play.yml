@@ -8,12 +8,11 @@
       file:
         path: /home/vagrant/my-app
         state: directory
-
+        
     - name: make sure the app.py is present
-      copy: 
+      template: 
         src: my-app/app.py
         dest: /home/vagrant/my-app/
-        force: true
 
     - name: make sure the service file is installed
       copy: 
