@@ -1,10 +1,9 @@
 from flask import Flask
 
 app = Flask(__name__)
-tower_user_name = "Alice"
 @app.route("/")
 def hello_world():
-    return "<p>Hello, {}!</p>".format(tower_user_name)
+    return "<p>Hello, {{  tower_user_name  }}!</p>"
 
 @app.route("/tp")
 def hello_2():
