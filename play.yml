@@ -27,5 +27,5 @@
     - name: make sure the service is started
       service:
         name: my-app
-        state: started
+        state: reloaded
 
