@@ -2,10 +2,10 @@
   tasks:
   - name: install docker
     package:
-      name: "docker"
+      name: "docker-ce"
       state: latest
   - name: ensure docker is installed
     service:
-      name: docker
+      name: docker-ce
       state: started
       enabled: yes
