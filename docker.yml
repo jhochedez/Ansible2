@@ -2,13 +2,8 @@
   tasks:
   - name: install docker
     package:
-      name: "{{item}}"
+      name: "docker"
       state: latest
-    loop:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-
   - name: ensure docker is installed
     service:
       name: docker
