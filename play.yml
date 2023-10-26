@@ -11,7 +11,7 @@
 
     - name: make sure the app.py is present
       copy: 
-        src: app.py
+        src: my-app/app.py
         dest: /home/vagrant/my-app/
 
     - name: make sure the service file is installed
